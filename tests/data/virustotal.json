@@ -1,0 +1,46 @@
+{
+    "data": {
+        "attributes": {
+            "as_owner": "AS47846",
+            "asn": 47846,
+            "continent": "EU",
+            "country": "DEU",
+            "jarm": "string",
+            "last_analysis_date": 9,
+            "last_analysis_results": {
+                "<engine name:string>": {
+                    "category": "string",
+                    "engine_name": "string",
+                    "method": "string",
+                    "result": "string"
+                }
+            },
+            "last_analysis_stats": {
+                "harmless": 1,
+                "malicious": 2,
+                "suspicious": 3,
+                "timeout": 3,
+                "undetected": 5
+            },
+            "last_modification_date": 123,
+            "network": "ip_range",
+            "regional_internet_registry": "string",
+            "reputation": 50,
+            "total_votes": {
+                "harmless": 1,
+                "malicious": 100
+            },
+            "tags": [
+                "malicious",
+                "suspicious"
+            ],
+            "whois": "string",
+            "whois_date": 123
+        },
+        "id": "123.123.123.123",
+        "links": {
+            "self": "https://www.virustotal.com/api/v3/ip_addresses/"
+        },
+        "type": "ip_address"
+    }
+}
