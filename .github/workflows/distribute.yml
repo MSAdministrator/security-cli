@@ -1,0 +1,40 @@
+name: Distribute Python Package
+
+on:
+    push:
+      tags:
+        - '*.*.*'
+
+permissions:
+  contents: read
+
+env:
+    PYTHON_VERSION: "3.13"
+jobs:
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/security-cli/
+    permissions:
+      id-token: write
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Poetry
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt poetry
+          poetry --version
+
+      - name: Package project
+        run: poetry build
+  
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
