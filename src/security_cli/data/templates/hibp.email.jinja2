@@ -1,0 +1,11 @@
+Service: {{ name }}
+Email: {{ email }}
+
+Breaches
+{% for resp in response -%}
+* Name - {{ resp.Name }}
+* Domain - {{ resp.Domain }}
+* PwnCount - {{ resp.PwnCount }}
+* Description - {{ resp.Description }}
+* DataClasses - {{ resp.DataClasses }}
+{% endfor %}

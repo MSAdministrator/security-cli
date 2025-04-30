@@ -1,0 +1,12 @@
+Service: {{ name }}
+Result: {{ result }}
+
+Stats
+{% for stat in stats %}
+* {{ stat }} - {{ stats[stat] }}
+{% endfor %}
+
+Page
+{% for p in page -%}
+* {{ p }} - {{ page[p] }}
+{% endfor %}

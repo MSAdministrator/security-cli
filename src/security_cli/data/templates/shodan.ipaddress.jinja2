@@ -1,0 +1,15 @@
+Service: {{ name }}
+IPAddress: {{ ip_str }}
+Last Analysis Results: {{ last_update }}
+
+Tags
+{% for tag in tags %}
+* {{ tag }}
+{% endfor %}
+
+Additional information includes:
+
+* Latitude: {{ latitude }}
+* Longitude: {{ longitude }}
+* ASN: {{ asn }}
+* Domains: {{ domains }}

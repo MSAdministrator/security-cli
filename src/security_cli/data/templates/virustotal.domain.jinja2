@@ -1,0 +1,10 @@
+Service: {{ name }}
+Domain: {{ id }}
+Reputation Score: {{ reputation }}
+Total Votes: {{ total_votes }}
+Last Analysis Results: {{ last_analysis_results }}
+
+Categories:
+{% for category in categories %}
+* {{ category }}
+{% endfor %}

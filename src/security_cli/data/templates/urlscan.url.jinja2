@@ -1,0 +1,13 @@
+Service: {{ name }}
+Url: {{ task.url }}
+Last Analysis Results: {{ task.time }}
+
+Tags
+{% for tag in task.tags %}
+* {{ tag }}
+{% endfor %}
+
+Stats
+{% for stat in stats %}
+* {{ stat }}
+{% endfor %}
