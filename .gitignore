@@ -164,5 +164,4 @@ cython_debug/
 .env
 .DS_Store
 __pycache__
-config.yaml
 .pytest_cache

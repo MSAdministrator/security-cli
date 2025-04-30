@@ -39,11 +39,11 @@ class Config:
 class ConfigManager:
 
     _config: Config = None
-    _config_path: str = "../"
+    _config_path: str = None
     _env_prefix: str = "ENRICHMENT_MCP"
     _jinja2_env: Environment
 
-    def load(self, path: Optional[str] = ".") -> Config:
+    def load(self, path: Optional[str] = "./config.yaml") -> Config:
         self._jinja2_env = Environment(
             loader=FileSystemLoader(
                 self.get_abs_path("./src/security_cli/data/templates")
@@ -116,5 +116,7 @@ class ConfigManager:
         return os.path.abspath(os.path.expanduser(os.path.expandvars(value)))
 
     def load_config_yaml(self, path: str) -> Dict:
-        with open(self.find_config(path), "r", encoding="utf-8") as f:
+        if not os.path.exists(self.get_abs_path(path)):
+            path = self.find_config(path)
+        with open(path, "r", encoding="utf-8") as f:
             return yaml.safe_load(f.read())

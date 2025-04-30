@@ -10,7 +10,7 @@ def test_config_manager():
     from security_cli.config import ConfigManager
 
     man = ConfigManager()
-    man.load()
+    man.load("./config.yaml")
 
     env = jinja2.Environment(loader=jinja2.FileSystemLoader("./src/security_cli/data/templates"))
 

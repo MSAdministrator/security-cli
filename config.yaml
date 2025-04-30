@@ -1,0 +1,32 @@
+actions:
+  enrich:
+    ipaddress:
+      - name: virustotal
+        template: virustotal.ipaddress.jinja2
+      - name: alienvault
+        template: alienvault.ipaddress.jinja2
+      - name: shodan
+        template: shodan.ipaddress.jinja2
+      - name: hybridanalysis
+        template: hybridanalysis.ipaddress.jinja2
+      - name: urlscan
+        template: urlscan.ipaddress.jinja2
+      - name: abuseipdb
+        template: abuseipdb.ipaddress.jinja2
+    domain:
+      - name: virustotal
+        template: virustotal.domain.jinja2
+      - name: alienvault
+        template: alienvault.domain.jinja2
+      - name: shodan
+        template: shodan.domain.jinja2
+      - name: hybridanalysis
+        template: hybridanalysis.domain.jinja2
+      - name: urlscan
+        template: urlscan.domain.jinja2
+    url:
+      - name: urlscan
+        template: urlscan.url.jinja2
+    email:
+      - name: hibp
+        template: hibp.email.jinja2
