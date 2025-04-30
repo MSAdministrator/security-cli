@@ -44,12 +44,16 @@ class ConfigManager:
     _jinja2_env: Environment
 
     def load(self, path: Optional[str] = ".") -> Config:
-        self._jinja2_env = Environment(loader=FileSystemLoader(self.get_abs_path("./src/security_cli/data/templates")))
+        self._jinja2_env = Environment(
+            loader=FileSystemLoader(
+                self.get_abs_path("./src/security_cli/data/templates")
+            )
+        )
         self.load_from_file(path=path)
         self.load_from_env()
         self._load_templates()
         return self._config
-    
+
     def get(self) -> Dict[str, str]:
         if not self._config:
             self.load()
@@ -71,9 +75,7 @@ class ConfigManager:
             self.load_from_file()
         for enrichment_type in ["ipaddress", "domain", "url", "email"]:
             if getattr(self._config.actions.enrich, enrichment_type):
-                for source in getattr(
-                    self._config.actions.enrich, enrichment_type
-                ):
+                for source in getattr(self._config.actions.enrich, enrichment_type):
                     env = f"{self._env_prefix}_{source.name}_key".upper()
                     if os.environ.get(env):
                         source.apikey = os.environ.get(env)
@@ -82,9 +84,7 @@ class ConfigManager:
     def _load_templates(self) -> None:
         for enrichment_type in ["ipaddress", "domain", "url", "email"]:
             if getattr(self._config.actions.enrich, enrichment_type):
-                for source in getattr(
-                    self._config.actions.enrich, enrichment_type
-                ):
+                for source in getattr(self._config.actions.enrich, enrichment_type):
                     if self._jinja2_env.get_template(source.template):
                         source.template = self._jinja2_env.get_template(source.template)
 

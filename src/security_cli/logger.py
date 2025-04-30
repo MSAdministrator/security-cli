@@ -7,29 +7,26 @@ from typing import Any, Dict, Optional
 
 
 LOGGING_CONFIG: Dict[str, Any] = {
-    'version': 1,
-    'formatters': {
-        'simple': {'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s'}
+    "version": 1,
+    "formatters": {
+        "simple": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"}
     },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-            'level': logging.INFO
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+            "level": logging.INFO,
         }
     },
-    'loggers': {
-        'my_logger': {
-            'handlers': ['console'],
-            'level': logging.INFO,
-            'propagate': False
+    "loggers": {
+        "my_logger": {
+            "handlers": ["console"],
+            "level": logging.INFO,
+            "propagate": False,
         }
     },
-    'root': {
-        'handlers': ['console'],
-        'level': logging.WARNING
-    },
-    'disable_existing_loggers': False
+    "root": {"handlers": ["console"], "level": logging.WARNING},
+    "disable_existing_loggers": False,
 }
 
 
@@ -66,7 +63,11 @@ class DebugFileHandler(FileHandler):
     """DebugFileHander."""
 
     def __init__(
-        self, filename: str, mode: str = "a", encoding: Optional[str] = None, delay: bool = False
+        self,
+        filename: str,
+        mode: str = "a",
+        encoding: Optional[str] = None,
+        delay: bool = False,
     ) -> None:
         """Used to debug logging.
 

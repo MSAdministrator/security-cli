@@ -5,7 +5,7 @@ from security_cli.observable import ObservableType
 
 
 class Action:
-    """Action class is a supporting class to support different 
+    """Action class is a supporting class to support different
     action types.
     """
 
