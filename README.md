@@ -1,18 +1,20 @@
 # Security CLI
 
-The `security-cli` is a CLI (and package) Python utility to perform common activities performed by security analysts.
+`security-cli` is a Python package and CLI tool to invoke common actions against third-party security products and services using a simple nomenclature.
 
-`security-cli` main goal is to provide a standard interface for performing data enrichment, querying, lookups, scanning and more in a simple and straightforward CLI interface.
+> We are currently in a early release phase with limited functionality implemented
 
 ## Why?
 
-I have been building workflows, playbooks, integrations and more to automate these processes throughout my career. Instead of continually having to understand how each product works, how to perform some action, etc. I wanted a simple CLI utility to do it all.
+I have built workflows, playbooks and integrations to automate many security processes throughout my career. I've learned many lessons in this space, but the common theme is the lack of standardization between products and services. Instead of focusing on standardization of APIs (REST in general), I decided to build `security-cli` to instead focus on standardizing the `intent` by using the most commmon verbs within the security industry.
 
-I know it's a lofty goal, but I believe we can build a sort of operating system framework which abstracts different product APIs into a single common framework/syntax.
+An `intent` is equivalent to one or more API calls to a service(s). The concept is focused on chaining calls, if needed, to perform an security action.
 
-This syntax is a common set of verbs which equates to HTTP calls with enough context.
+For example, as an analyst you may want to `scan` a `host` for some vulnerabilities or just `scan` using some EDR product. Each of these `intents` or series of API calls to perform this action may be 1 or 5+ requests; all dependent on the product itself.
 
-This is the start of something great or horrible, time will tell. :)
+With `security-cli` (the hope is) to standardize these intentions in a common framework/tool. Whether you want to run that scan on a system or against a web app, you could run `security-cli scan {hostname}` to perform the same goals; whether 1 or 7 API calls.
+
+I know it's a lofty goal, but I believe `security-cli` can describe the intentions of practioners and abstract different product APIs into a single common framework/syntax.
 
 ## Features
 
@@ -23,7 +25,7 @@ Currently, the features are limited but the groundwork has been laid for many fu
 * Performs observable enrichment (enrich)
 * Configuration (and environmental variables) driven mappings of actions, observable types and the different supported services
 
-This is just the start of this project so it is limited in capabilities as I continue to build them out. That being said, the goal is the same; a simple and usable interface to perform common security operations activities.
+This is just the start of this project so it is limited in capabilities as I continue to build them out. That being said, the goal is the same; a simple and usable interface to perform common security operations `intents`.
 
 For example, most APIs are overly complex and some even require multiple API calls to perform an action or gathering the correct data. `security-cli` provides a simple nomenclature based on common verbs within the security domain.
 
