@@ -42,11 +42,9 @@ ALL_LOOKUP_SERVICES: Dict[ObservableType, Dict[str, EnrichmentService]] = {
     },
     ObservableType.URL: {
         UrlscanUrl.name: UrlscanUrl,
-        VirusTotalURL.name: VirusTotalURL
+        VirusTotalURL.name: VirusTotalURL,
     },
-    ObservableType.SHA256: {
-        VirusTotalFile.name: VirusTotalFile
-    },
+    ObservableType.SHA256: {VirusTotalFile.name: VirusTotalFile},
     ObservableType.EMAIL: {
         HaveIBeenPwnedEmail.name: HaveIBeenPwnedEmail,
     },
@@ -103,7 +101,7 @@ class Enrich(Base):
         if not ObservableType.from_observable_value(value) == ObservableType.EMAIL:
             return ""
         return self._process_source(value, ObservableType.EMAIL)
-    
+
     def sha256(self, value: str) -> str:
         if not ObservableType.from_observable_value(value) == ObservableType.SHA256:
             return ""

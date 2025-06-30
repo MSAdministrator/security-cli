@@ -66,4 +66,15 @@ class ObservableType(ValidatedEnum):
         elif self.value == ObservableType.EMAIL.value:
             return f"{''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(7))}@{_domain}"
         elif self.value == ObservableType.SHA256.value:
-            return random.choice([hashlib.sha256(str(''.join(random.choice(string.ascii_uppercase) for i in range(256))).encode('utf-8')).hexdigest()])
+            return random.choice(
+                [
+                    hashlib.sha256(
+                        str(
+                            "".join(
+                                random.choice(string.ascii_uppercase)
+                                for i in range(256)
+                            )
+                        ).encode("utf-8")
+                    ).hexdigest()
+                ]
+            )

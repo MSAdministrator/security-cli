@@ -44,7 +44,11 @@ class ConfigManager:
     _env_prefix: str = "ENRICHMENT_MCP"
     _jinja2_env: Environment
     _supported_enrichment_types: list = [
-        "ipaddress", "domain", "url", "email", "sha256"
+        "ipaddress",
+        "domain",
+        "url",
+        "email",
+        "sha256",
     ]
 
     def load(self, path: Optional[str] = "./config.yaml") -> Config:

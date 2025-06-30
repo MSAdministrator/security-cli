@@ -13,9 +13,7 @@ class VirusTotal(BaseService):
     name: str = "virustotal"
     host: str = "https://www.virustotal.com/api/v3/"
     apikey: str = "x-apikey"
-    extra_headers: dict = {
-        "x-tool": "python/security-cli"
-    }
+    extra_headers: dict = {"x-tool": "python/security-cli"}
 
 
 class VirusTotalIP(VirusTotal):
