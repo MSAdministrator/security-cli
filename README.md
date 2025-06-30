@@ -113,6 +113,7 @@ Under the `enrich` section we have the different supported observable types.
 * url
 * domain
 * email
+* sha256
 
 > Additional hash types will be supported soon
 
@@ -142,12 +143,12 @@ Underneath these high-level actions, we list out the observable type followed by
 * domain - A domain or netloc
 * url - A fully qualified URL with schema, etc.
 * email - A standard email address
+* sha256 - A file SHA256 hash
 
 We also support these types but they are currently not implemented:
 
 * md5 - A file MD5 hash
 * sha1 - A file SHA1 hash
-* sha256 - A file SHA256 hash
 
 Each service must have a `name` and a `template`. The `apikey` field can be provided but we recommend to use environmental variables.
 

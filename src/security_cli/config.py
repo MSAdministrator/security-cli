@@ -1,7 +1,7 @@
 import os
 
 from pathlib import Path, PurePath
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 
 import yaml
@@ -20,10 +20,11 @@ class Source:
 
 @define
 class Enrich:
-    ipaddress: List[Source] = field(factory=list)
-    domain: List[Source] = field(factory=list)
-    url: List[Source] = field(factory=list)
-    email: List[Source] = field(factory=list)
+    ipaddress: list[Source] = field(factory=list)
+    domain: list[Source] = field(factory=list)
+    url: list[Source] = field(factory=list)
+    email: list[Source] = field(factory=list)
+    sha256: list[Source] = field(factory=list)
 
 
 @define
@@ -42,6 +43,13 @@ class ConfigManager:
     _config_path: str = None
     _env_prefix: str = "ENRICHMENT_MCP"
     _jinja2_env: Environment
+    _supported_enrichment_types: list = [
+        "ipaddress",
+        "domain",
+        "url",
+        "email",
+        "sha256",
+    ]
 
     def load(self, path: Optional[str] = "./config.yaml") -> Config:
         self._jinja2_env = Environment(
@@ -73,7 +81,7 @@ class ConfigManager:
     def load_from_env(self) -> Config:
         if not self._config:
             self.load_from_file()
-        for enrichment_type in ["ipaddress", "domain", "url", "email"]:
+        for enrichment_type in self._supported_enrichment_types:
             if getattr(self._config.actions.enrich, enrichment_type):
                 for source in getattr(self._config.actions.enrich, enrichment_type):
                     env = f"{self._env_prefix}_{source.name}_key".upper()
@@ -82,7 +90,7 @@ class ConfigManager:
         return self._config
 
     def _load_templates(self) -> None:
-        for enrichment_type in ["ipaddress", "domain", "url", "email"]:
+        for enrichment_type in self._supported_enrichment_types:
             if getattr(self._config.actions.enrich, enrichment_type):
                 for source in getattr(self._config.actions.enrich, enrichment_type):
                     if self._jinja2_env.get_template(source.template):

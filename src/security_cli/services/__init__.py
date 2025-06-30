@@ -9,7 +9,7 @@ from .hibp import HaveIBeenPwnedEmail
 from .hybridanalysis import HybridAnalysisDomain, HybridAnalysisIP
 from .shodan import ShodanDomain, ShodanIP
 from .urlscan import UrlscanDomain, UrlscanIP, UrlscanUrl
-from .virustotal import VirusTotalDomain, VirusTotalIP
+from .virustotal import VirusTotalDomain, VirusTotalIP, VirusTotalFile, VirusTotalURL
 
 
 EnrichmentService = TypeVar("EnrichmentService", "SupportedService", Callable)

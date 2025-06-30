@@ -20,6 +20,8 @@ class Action:
             return _enrich.url(value)
         elif ioc_type == ObservableType.EMAIL:
             return _enrich.email(value)
+        elif ioc_type == ObservableType.SHA256:
+            return _enrich.sha256(value)
         return ""
 
     def get(self) -> None:

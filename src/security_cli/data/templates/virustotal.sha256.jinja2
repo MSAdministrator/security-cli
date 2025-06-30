@@ -1,0 +1,10 @@
+Service: {{ name }}
+IPAddress: {{ id }}
+Reputation Score: {{ attributes.reputation }}
+Total Votes: {{ attributes.total_votes }}
+Last Analysis Results: {{ attributes.last_analysis_date }}
+
+Tags:
+{% for tag in attributes.tags %}
+* {{ tag }}
+{% endfor %}

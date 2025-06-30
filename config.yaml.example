@@ -27,6 +27,11 @@ actions:
     url:
       - name: urlscan
         template: urlscan.url.jinja2
+      - name: virustotal
+        template: virustotal.url.jinja2
     email:
       - name: hibp
         template: hibp.email.jinja2
+    sha256:
+      - name: virustotal
+        template: virustotal.sha256.jinja2
