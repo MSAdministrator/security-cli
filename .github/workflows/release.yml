@@ -1,0 +1,48 @@
+name: Release Python Package
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+env:
+    PYTHON_VERSION: "3.13"
+    POETRY_VERSION: "1.4.2"
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: python
+      # The logic below handles the PyPi distribution:
+      - uses: actions/checkout@v4
+        # these if statements ensure that a publication only occurs when
+        # a new release is created:
+        if: ${{ steps.release.outputs.releases_created }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+        if: ${{ steps.release.outputs.releases_created }}
+      - name: Set up poetry
+        uses: abatilo/actions-poetry@v2.2.0
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
+        if: ${{ steps.release.outputs.releases_created }}
+      - name: Build tarball
+        run: |
+          poetry build
+        if: ${{ steps.release.outputs.releases_created }}
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        if: ${{ steps.release.outputs.releases_created }}
